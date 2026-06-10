@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acesso Restrito</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body{
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        padding:20px;
+    }
+
+    .container{
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius:20px;
+        padding:50px 40px;
+        text-align:center;
+        max-width:600px;
+        width:100%;
+        color:white;
+        box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    }
+
+    .icone{
+        font-size:60px;
+        margin-bottom:20px;
+    }
+
+    h1{
+        font-size:2rem;
+        margin-bottom:15px;
+        font-weight:700;
+    }
+
+    p{
+        color:rgba(255,255,255,0.85);
+        margin-bottom:30px;
+        line-height:1.6;
+    }
+
+    .btn-login{
+        display:inline-block;
+        padding:15px 35px;
+        background:white;
+        color:#1e3c72;
+        text-decoration:none;
+        font-weight:600;
+        border-radius:50px;
+        transition:all .3s ease;
+        box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+
+    .btn-login:hover{
+        transform:translateY(-3px);
+        background:#f4f4f4;
+        box-shadow:0 12px 25px rgba(0,0,0,.2);
+    }
+
+    .footer{
+        margin-top:35px;
+        font-size:0.9rem;
+        color:rgba(255,255,255,0.7);
+    }
+
+    .heart{
+        color:#ff6b81;
+    }
+
+    @media(max-width:600px){
+        h1{
+            font-size:1.6rem;
+        }
+
+        .container{
+            padding:35px 25px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="icone">🔒</div>
+
+    <h1>Acesso Restrito</h1>
+
+    <p>
+        Esta área é destinada exclusivamente a usuários autorizados.
+        Para continuar, realize seu login utilizando o botão abaixo.
+    </p>
+
+    <a href="/acesso/" class="btn-login">
+        Entrar no Sistema
+    </a>
+
+    <div class="footer">
+        Feito com carinho por Carlos <span class="heart">♥</span>
+    </div>
+
+</div>
