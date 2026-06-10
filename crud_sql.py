@@ -37,10 +37,31 @@ def listarUsuarios() :
     cursor = conexao.cursor()
     # linha abaixo é Selecione tudo que é da tabela usuários
     cursor.execute('SELECT * FROM usuarios')
-    usuarios =cursor.fetchall()
+    usuarios = cursor.fetchall()
     # a função fetch é um olhar sem compromisso - você está apenas olhando a informação
     for usuario in usuarios:
         print(usuario)
+    conexao.close()
+
+def AtualizarUsuario(id, novoNome, novaIdade) :
+    conexao = conectarBanco()
+    cursor = conexao.cursor()
+    cursor.execute('''
+        UPDATE usuarios 
+        SET nome = ?, idade = ?
+        WHERE id = ?
+    ''',(novoNome, novaIdade, id))
+    conexao.commit()
+    conexao.close()
+
+def ExcluirUsuario(id) :
+    conexao = conectarBanco()
+    cursor = conexao.cursor()
+    cursor.execute('''
+        DELETE FROM usuarios
+        WHERE id = ?
+    ''', (id,))
+    conexao.commit()
     conexao.close()
 
 criarTabela()
@@ -52,3 +73,16 @@ inserirUsuarios("Guilherme",25)
 inserirUsuarios("Daniel",30)
 inserirUsuarios("Vinicius",22)
 listarUsuarios()
+print('----------Depois de editar-----------')
+
+AtualizarUsuario(3, 'Thamires', 35)
+listarUsuarios()
+
+nomes = ['Adelaide', 'Abelardo', 'Juvencio', 'Roberval', 'Silveiro', 'Celestino', 'Zacarias', 'Ambrosio']
+
+for nome in nomes :
+    inserirUsuarios(nome, 1)
+
+ExcluirUsuario(12)
+listarUsuarios()
+
