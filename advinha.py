@@ -1,40 +1,56 @@
 from random import randint
 
-print("########  Iniciando o jogo!  ########")
+vitorias = 0
+rodadas = 3
 
+print("########  JOGO DA ADIVINHAÇÃO - MELHOR DE 3  ########")
 
-random = randint(0, 100)
-chute = 0
-chances = 10
+for rodada in range(1, rodadas + 1):
+    print(f"\n========== RODADA {rodada} ==========")
 
-# < menor
-# > maior
-# == igual (comparação)
-# != diferente (comparação)
-# >= Maior ou Igual (a partir de tal valor)
-# <= Menor ou Igual (até tal valor)
+    numero_secreto = randint(0, 100)
+    chances = 10
+    ganhou = False
 
-while chute != random :
-    chute = input("Chute um numero entre 0 e 100")
-    if chute.isnumeric() :
-        chute = int(chute)
-        chances = chances - 1
-        if chute == random  :
-            print('')
-            print('Parabens, você venceu¹ O número era {} e você ainda tinha {} chances.'.format(random, chances))
-            print('')
-            break
-        else :
-            print('')
-            if chute > random :
-                print('Você errou! Dica: é um número menor.')
-            else :
-                print('Você errou! Dica: É um número maior.')
-            print('Você possui ainda {} chances.'.format(chances))
-            print('')
-        if chances == 0 :
-            print('')
-            print('Suas chances acabaram, você perdeu!')
-            print('')
-            break
-print("########  Iniciando o jogo!  ########")
+    while chances > 0:
+        chute = input("Chute um número entre 0 e 100: ")
+
+        if chute.isnumeric():
+            chute = int(chute)
+            chances -= 1
+
+            if chute == numero_secreto:
+                print("\n🎉 Parabéns! Você acertou!")
+                print(f"O número era {numero_secreto}.")
+                print(f"Você ainda tinha {chances} chances.")
+                ganhou = True
+                vitorias += 1
+                break
+
+            elif chute > numero_secreto:
+                print("\n❌ Você errou! Dica: é um número menor.")
+            else:
+                print("\n❌ Você errou! Dica: é um número maior.")
+
+            print(f"Você possui ainda {chances} chances.\n")
+
+        else:
+            print("Digite apenas números!")
+
+    if not ganhou:
+        print("\n💀 Suas chances acabaram!")
+        print(f"O número era {numero_secreto}.")
+
+print("\n########  RESULTADO FINAL  ########")
+print(f"Você venceu {vitorias} de {rodadas} rodadas.")
+
+if vitorias == 3:
+    print("🏆 Perfeito! Você venceu todas as rodadas!")
+elif vitorias == 2:
+    print("🥈 Muito bem! Você venceu a maioria das rodadas!")
+elif vitorias == 1:
+    print("🙂 Você conseguiu vencer uma rodada.")
+else:
+    print("😢 Você não venceu nenhuma rodada.")
+
+print("########  FIM DE JOGO  ########")
